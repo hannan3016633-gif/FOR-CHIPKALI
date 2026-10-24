@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hannan & Madiha - Our Eternal Love Story</title>
+    <title>Hannan & Madiha - Our Eternal Love Story & Gaming Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Jameel+Noori+Nastaleeq&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -156,14 +156,8 @@
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(-10vh) translateX(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) translateX(60px) rotate(360deg);
-                opacity: 0.2;
-            }
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(60px) rotate(360deg); opacity: 0.2; }
         }
 
         /* Top Controls Banner */
@@ -541,45 +535,78 @@
             border-top: 1px solid rgba(232, 165, 152, 0.15);
         }
 
-        /* Contact Me / Send Message Section */
-        .contact-card {
+        /* Gaming Lab Styles */
+        .gaming-hub-card {
+            background: rgba(26, 15, 22, 0.95);
+            border: 2px solid var(--rose-gold);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 35px rgba(232, 165, 152, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: #2a081c;
+            border: 2px solid var(--rose-gold);
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
             text-align: center;
         }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
+        .game-card:hover {
+            background: var(--rose-gold);
+            color: #000;
+            box-shadow: 0 0 15px var(--rose-gold);
+            transform: translateY(-3px);
         }
+        .game-card:hover h3, .game-card:hover p { color: #000; }
+        .game-card h3 { color: var(--rose-gold-light); margin-bottom: 8px; font-size: 1.2rem; font-family: 'Cinzel', serif; }
+        .game-card p { color: var(--text-muted); font-size: 0.9rem; margin: 0; font-style: italic; }
 
-        .contact-input {
-            background: rgba(11, 7, 10, 0.9);
-            border: 1px solid var(--rose-gold);
-            padding: 14px 20px;
-            border-radius: 12px;
-            color: var(--text-main);
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            resize: none;
-            outline: none;
-            font-style: italic;
-        }
+        .game-section { display: none; text-align: right; }
+        .game-section.active { display: block; }
 
-        .contact-input:focus {
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
+        .back-btn { background: transparent; border: 1px solid var(--rose-gold); padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: inherit; margin-bottom: 15px; color: var(--rose-gold); transition: 0.2s; font-style: italic; }
+        .back-btn:hover { background: var(--rose-gold); color: #0b070a; }
 
-        .success-msg {
-            display: none;
-            color: #77dd77;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            margin-top: 12px;
-            animation: fadeIn 0.5s ease;
+        .ctrl-btn, .option-btn, .menu-btn { width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 15px; text-align: center; transition: 0.2s; font-family: inherit; margin-top: 8px; background: #2a081c; border: 2px solid var(--rose-gold); color: var(--text-main); font-style: italic; }
+        .ctrl-btn:hover, .option-btn:hover, .menu-btn:hover { background: var(--rose-gold); color: #0b070a; box-shadow: 0 0 10px var(--rose-gold); }
+
+        .option-btn.correct { background: #008000 !important; border-color: #00ff00 !important; }
+        .option-btn.wrong { background: #8b0000 !important; border-color: #dc3545 !important; }
+
+        .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0; }
+        .cell { background: #2a081c; border: 2px solid var(--rose-gold); height: 80px; border-radius: 8px; font-size: 35px; font-weight: bold; display: flex; justify-content: center; align-items: center; cursor: pointer; color: var(--rose-gold-light); }
+
+        canvas { background: #020c1b; border: 2px solid var(--rose-gold); border-radius: 8px; display: block; margin: 0 auto; }
+
+        /* Dynamic Puzzle Board Container */
+        .puzzle-board { 
+            display: grid; 
+            gap: 2px; 
+            background: var(--rose-gold); 
+            padding: 2px; 
+            border-radius: 8px; 
+            margin: 15px auto; 
+            width: 300px; 
+            height: 300px; 
         }
+        .tile { 
+            background-size: 300px 300px; 
+            cursor: pointer; 
+            background-repeat: no-repeat; 
+        }
+        .tile.empty { background: #111 !important; cursor: default; }
 
         /* Bouquet Section */
         .bouquet-card {
@@ -824,6 +851,102 @@
             </div>
         </div>
 
+        <!-- GAMING LAB SECTION -->
+        <div class="gaming-hub-card">
+            <h2 style="color: var(--rose-gold); font-family: 'Cinzel', serif; margin-bottom: 10px; font-style: italic;">🎮 Gaming Lab - Madiha AGY 🎮</h2>
+            <p style="color: var(--text-muted); font-style: italic; margin-bottom: 20px;">کوئی بھی گیم منتخب کریں اور اس جادوئی دنیا میں کھیلیں!</p>
+            
+            <!-- Hub Menu -->
+            <div id="hub-screen" class="game-hub-view">
+                <div class="game-grid">
+                    <div class="game-card" onclick="openGame('quiz')">
+                        <h3>🧠 کوئز گیم</h3>
+                        <p>شکرگڑھ، اسلام اور جنرل نالج کے سوالات</p>
+                    </div>
+                    <div class="game-card" onclick="openGame('tictactoe')">
+                        <h3>❌ Tic-Tac-Toe</h3>
+                        <p>دوست یا روبوٹ کے خلاف مزے دار کھیل</p>
+                    </div>
+                    <div class="game-card" onclick="openGame('brickbreaker')">
+                        <h3>🧱 بال بریکر</h3>
+                        <p>20 لیولز، فائر بال اور پاور اپس والا گیم</p>
+                    </div>
+                    <div class="game-card" onclick="openGame('puzzle')">
+                        <h3>🧩 لیول وائز پزل گیم</h3>
+                        <p>Easy (9), Hard (12), Difficult (15) ٹাইলز</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div id="quiz-section" class="game-section">
+                <button class="back-btn" onclick="goHub()">← گیمز مینو پر واپس</button>
+                <h3 style="color: var(--rose-gold-light); text-align: center; margin-bottom: 15px;">🧠 کوئز گیم</h3>
+                <div id="quiz-box">
+                    <h4 id="q-text" style="color: #fff; margin-bottom: 15px;">سوال...</h4>
+                    <div id="q-buttons"></div>
+                    <button class="ctrl-btn" id="next-q-btn" style="display:none;" onclick="nextQuiz()">اگلا سوال</button>
+                </div>
+            </div>
+
+            <!-- Tic-Tac-Toe Section -->
+            <div id="tictactoe-section" class="game-section">
+                <button class="back-btn" onclick="goHub()">← گیمز مینو پر واپس</button>
+                <h3 style="color: var(--rose-gold-light); text-align: center; margin-bottom: 15px;">❌ Tic-Tac-Toe</h3>
+                <div id="ttt-menu">
+                    <button class="menu-btn" onclick="startTTT('friend')">👥 دوست کے ساتھ کھیلیں</button>
+                    <button class="menu-btn" onclick="startTTT('robot')">🤖 روبوٹ کے خلاف کھیلیں</button>
+                </div>
+                <div id="ttt-game" style="display:none;">
+                    <div id="ttt-status" style="text-align:center; color:var(--rose-gold-light); margin-bottom:10px;">باری: X</div>
+                    <div class="board" id="ttt-board">
+                        <div class="cell" onclick="cellClick(0)"></div>
+                        <div class="cell" onclick="cellClick(1)"></div>
+                        <div class="cell" onclick="cellClick(2)"></div>
+                        <div class="cell" onclick="cellClick(3)"></div>
+                        <div class="cell" onclick="cellClick(4)"></div>
+                        <div class="cell" onclick="cellClick(5)"></div>
+                        <div class="cell" onclick="cellClick(6)"></div>
+                        <div class="cell" onclick="cellClick(7)"></div>
+                        <div class="cell" onclick="cellClick(8)"></div>
+                    </div>
+                    <button class="ctrl-btn" onclick="resetTTT()">دوبارہ شروع کریں</button>
+                </div>
+            </div>
+
+            <!-- Brick Breaker Section -->
+            <div id="brickbreaker-section" class="game-section">
+                <button class="back-btn" onclick="goHub()">← گیمز مینو پر واپس</button>
+                <h3 style="color: var(--rose-gold-light); text-align: center; margin-bottom: 10px;">🧱 بال بریکر (20 لیولز)</h3>
+                <div style="display:flex; justify-content:space-around; color:var(--rose-gold); margin-bottom:8px; font-weight:bold;">
+                    <span id="bb-level">لیول: 1 / 20</span>
+                    <span id="bb-score">اسکور: 0</span>
+                </div>
+                <canvas id="bbCanvas" width="340" height="360"></canvas>
+                <div style="margin-top:10px; display:flex; justify-content:center; gap:15px;">
+                    <button class="ctrl-btn" onmousedown="moveBBLeft()" ontouchstart="moveBBLeft()">◀ بائیں</button>
+                    <button class="ctrl-btn" onmousedown="moveBBRight()" ontouchstart="moveBBRight()">دائیں ▶</button>
+                </div>
+            </div>
+
+            <!-- Puzzle Section (Level-wise: Easy 9, Hard 12, Difficult 15) -->
+            <div id="puzzle-section" class="game-section">
+                <button class="back-btn" onclick="goHub()">← گیمز مینو پر واپس</button>
+                <h3 style="color: var(--rose-gold-light); text-align: center; margin-bottom: 10px;">🧩 لیول وائز تصویر کا پزل گیم</h3>
+                
+                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <button class="ctrl-btn" style="width: auto; padding: 6px 15px;" onclick="setPuzzleDifficulty('easy')">Easy (9 pcs)</button>
+                    <button class="ctrl-btn" style="width: auto; padding: 6px 15px;" onclick="setPuzzleDifficulty('hard')">Hard (12 pcs)</button>
+                    <button class="ctrl-btn" style="width: auto; padding: 6px 15px;" onclick="setPuzzleDifficulty('difficult')">Difficult (15 pcs)</button>
+                    <button class="ctrl-btn" style="width: auto; padding: 6px 15px;" onclick="changePuzzleImage()">🖼️ تصویر تبدیل کریں</button>
+                </div>
+
+                <div id="puzzle-status" style="color:var(--text-muted); text-align:center; margin-bottom:10px;">لیول منتخب کریں اور پزل حل کریں!</div>
+                <div class="puzzle-board" id="puzzle-board"></div>
+                <button class="ctrl-btn" onclick="shufflePuzzle()">دوبارہ شفل کریں</button>
+            </div>
+        </div>
+
         <!-- MYSTERY GIFT #2 (At the End) -->
         <div class="gift-box-wrapper" id="gift2Wrapper" onclick="unlockGift(2)">
             <div class="gift-icon" id="gift2Icon">🎁</div>
@@ -849,9 +972,9 @@
             </div>
         </div>
 
-        <!-- 10 Romantic Urdu Sher Section (Verse format + Dedication) -->
+        <!-- 10 Romantic Urdu Sher Section with Updated Heading -->
         <div class="card">
-            <h2>Pyar Mohabbat Ke 10 Khoobsurat Sher 🌹</h2>
+            <h2>Yeh chand sher apka liya 🌹</h2>
             <div class="poetry-dedication">Its for you begum gggg 🤍✨</div>
             <div class="poetry-list">
                 <div class="sher-item">
@@ -860,7 +983,7 @@
                 </div>
                 <div class="sher-item">
                     <span class="sher-line">نگاہیں مل گئیں جب سے تمھاری اس نگاہوں سے،</span>
-                    <span class="sher-line">مجھے ہر سمت بس اب تم ہی تم نظر آئے ہو۔ ✨</span>
+                    <span class="sher-line">मुझे हर سمت بس اب تم ہی تم نظر آئے ہو۔ ✨</span>
                 </div>
                 <div class="sher-item">
                     <span class="sher-line">تمھاری مسکراہٹ ہی مری راحت کی دنیا ہے،</span>
@@ -868,7 +991,7 @@
                 </div>
                 <div class="sher-item">
                     <span class="sher-line">ہزاروں رنگ بکھرے ہیں تمھاری اک ادا سے،</span>
-                    <span class="sher-line">हमारी زندگی روشن ہوئی ہے اس وفا سے۔ 🌸</span>
+                    <span class="sher-line">हमاری जिंदगी روشن ہوئی है اس وفا سے۔ 🌸</span>
                 </div>
                 <div class="sher-item">
                     <span class="sher-line">دھڑکنوں کی زبان پر اب تمہی کا نام رہتا ہے،</span>
@@ -880,19 +1003,19 @@
                 </div>
                 <div class="sher-item">
                     <span class="sher-line">تمنا تھی کہ کوئی ایسا دلبر مہرباں ہو،</span>
-                    <span class="sher-line">हमारी روح کا رشتہ جو بے حد جاویداں ہو۔ 💫</span>
+                    <span class="sher-line">हमاری روح کا رشتہ جو بے حد جاویداں ہو۔ 💫</span>
                 </div>
                 <div class="sher-item">
-                    <span class="sher-line">نگاہوں کی یہ چاہت ہے کہ تم को देखते जाएं،</span>
-                    <span class="sher-line">تمھارے پیار میں हम خود को يوهیں کھوते जाएं۔ 🕊️</span>
+                    <span class="sher-line">نگاہوں کی یہ چاہت ہے کہ تم کو دیکھتے जाएं،</span>
+                    <span class="sher-line">تمھارے پیار میں ہم خود کو یونہی کھوتے جائیں۔ 🕊️</span>
                 </div>
                 <div class="sher-item">
-                    <span class="sher-line">تمھاری بات میں جادو सा कोई छпа रहता है,</span>
-                    <span class="sher-line">हमारा दिल تمھاری یاد میں گمسا رہتا ہے۔ 🦋</span>
+                    <span class="sher-line">تمھاری بات میں جادو سا کوئی چھپا رہتا ہے،</span>
+                    <span class="sher-line">ہمارا دل تمھاری یاد میں گمسا رہتا ہے۔ 🦋</span>
                 </div>
                 <div class="sher-item">
-                    <span class="sher-line">تمھی سے ابتدا میری، تمھی पर انتہا میری،</span>
-                    <span class="sher-line">تمھی हो जानِ جاں मेरी, تمھی हो बस دعا मेरी। 💍</span>
+                    <span class="sher-line">تمھی سے ابتدا میری، تمھی پر انتہا میری،</span>
+                    <span class="sher-line">تمھی ہو جانِ جاں میری، تمھی ہو بس دعا میری۔ 💍</span>
                 </div>
             </div>
         </div>
@@ -904,6 +1027,37 @@
             <p style="font-family: 'Playfair Display', serif; color: var(--rose-gold-light); font-size: 1.15rem; font-style: italic;">
                 A timeless bouquet of red and white roses, blooming eternally just like our love. ✨🌹
             </p>
+        </div>
+
+        <!-- FULL END: Ghazal Integration -->
+        <div class="card">
+            <h2>✨ Special Ghazal for You ✨</h2>
+            <div class="poetry-list">
+                <div class="sher-item">
+                    <span class="sher-line">تم حقیقت نہیں ہو حسرت ہو 🌙✨</span>
+                    <span class="sher-line">جو ملے خواب میں وہ دولت ہو 💫💎</span>
+                </div>
+                <div class="sher-item">
+                    <span class="sher-line">تم ہو خوشبو کے خواب کی خوشبو 🌸🍃</span>
+                    <span class="sher-line">اور اتنے ہی بےمروت ہو 🥀💔</span>
+                </div>
+                <div class="sher-item">
+                    <span class="sher-line">پہلو میں ہو پر قرار نہیں 🫂❤️‍🩹</span>
+                    <span class="sher-line">یعنی ایسا ہے جیسے فرقت ہو 🌌🌧️</span>
+                </div>
+                <div class="sher-item">
+                    <span class="sher-line">ہے میری آرزو کہ میرے سوا 🤲💖</span>
+                    <span class="sher-line">تمہیں سب شاعروں سے وحشت ہو 🖋️✨</span>
+                </div>
+                <div class="sher-item">
+                    <span class="sher-line">کیوں نہ دیکھتے ہو آئینہ 🪞👀</span>
+                    <span class="sher-line">تم تو خود سے بھی خوبصورت ہو 🌹👑</span>
+                </div>
+                <div class="sher-item">
+                    <span class="sher-line">داستان ختم ہونے والی ہے 📜⏳</span>
+                    <span class="sher-line">تم میری آخری محبت ہو ❤️💍[cite: 1]</span>
+                </div>
+            </div>
         </div>
 
         <!-- Emotional Final Footer -->
@@ -1077,6 +1231,331 @@
             } else {
                 alert("Please write a sweet message first! 💕");
             }
+        }
+
+        /* Gaming Lab JS Logic */
+        function openGame(gameName) {
+            document.getElementById("hub-screen").style.display = "none";
+            document.querySelectorAll(".game-section").forEach(sec => sec.classList.remove("active"));
+            document.getElementById(gameName + "-section").classList.add("active");
+
+            if (gameName === 'quiz') initQuiz();
+            if (gameName === 'brickbreaker') startBrickBreaker();
+            if (gameName === 'puzzle') initPuzzle();
+        }
+
+        function goHub() {
+            document.querySelectorAll(".game-section").forEach(sec => sec.classList.remove("active"));
+            document.getElementById("hub-screen").style.display = "block";
+            stopBrickBreaker();
+        }
+
+        /* Quiz Logic */
+        const quizData = [
+            { q: "شکرگڑھ تحصیل پاکستان کے کس ضلع کا حصہ ہے؟", a: [{t:"نارووال", c:true}, {t:"سیالکوٹ", c:false}, {t:"لاہور", c:false}] },
+            { q: "قرآن مجید میں کل کتنی سورتیں ہیں؟", a: [{t:"114", c:true}, {t:"110", c:false}, {t:"120", c:false}] },
+            { q: "پاکستان کا قومی پرندہ کون سا ہے؟", a: [{t:"چکور", c:true}, {t:"شاہین", c:false}, {t:"عقاب", c:false}] }
+        ];
+        let qIdx = 0;
+        function initQuiz() { qIdx = 0; loadQuiz(); }
+        function loadQuiz() {
+            let item = quizData[qIdx];
+            document.getElementById("q-text").innerText = (qIdx + 1) + ". " + item.q;
+            let btnBox = document.getElementById("q-buttons");
+            btnBox.innerHTML = "";
+            document.getElementById("next-q-btn").style.display = "none";
+            item.a.forEach(ans => {
+                let b = document.createElement("button");
+                b.className = "option-btn";
+                b.innerText = ans.t;
+                b.onclick = () => {
+                    if(ans.c) b.classList.add("correct"); else b.classList.add("wrong");
+                    Array.from(btnBox.children).forEach(x => x.disabled = true);
+                    document.getElementById("next-q-btn").style.display = "block";
+                };
+                btnBox.appendChild(b);
+            });
+        }
+        function nextQuiz() {
+            qIdx++;
+            if(qIdx < quizData.length) loadQuiz();
+            else { document.getElementById("quiz-box").innerHTML = "<h3 style='text-align:center; color:#77dd77;'>کوئز مکمل ہو گیا! 🎉</h3>"; }
+        }
+
+        /* Tic-Tac-Toe Logic */
+        let tttBoard = ["","","","","","","","",""];
+        let tttTurn = "X";
+        let tttActive = true;
+        let tttMode = "friend";
+
+        function startTTT(mode) {
+            tttMode = mode;
+            document.getElementById("ttt-menu").style.display = "none";
+            document.getElementById("ttt-game").style.display = "block";
+            resetTTT();
+        }
+        function cellClick(idx) {
+            if(tttBoard[idx] !== "" || !tttActive) return;
+            tttBoard[idx] = tttTurn;
+            document.getElementsByClassName("cell")[idx].innerText = tttTurn;
+            checkTTTwin();
+            if(tttActive) {
+                tttTurn = tttTurn === "X" ? "O" : "X";
+                document.getElementById("ttt-status").innerText = "باری: " + tttTurn;
+                if(tttMode === 'robot' && tttTurn === 'O') setTimeout(robotTTT, 400);
+            }
+        }
+        function robotTTT() {
+            let empty = [];
+            tttBoard.forEach((v, i) => { if(v === "") empty.push(i); });
+            if(empty.length > 0 && tttActive) {
+                let r = empty[Math.floor(Math.random() * empty.length)];
+                tttBoard[r] = "O";
+                document.getElementsByClassName("cell")[r].innerText = "O";
+                checkTTTwin();
+                if(tttActive) { tttTurn = "X"; document.getElementById("ttt-status").innerText = "باری: X"; }
+            }
+        }
+        function checkTTTwin() {
+            const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            let won = false;
+            wins.forEach(w => {
+                if(tttBoard[w[0]] && tttBoard[w[0]] === tttBoard[w[1]] && tttBoard[w[1]] === tttBoard[w[2]]) won = true;
+            });
+            if(won) {
+                document.getElementById("ttt-status").innerText = `کھلاڑی ${tttTurn} جیت گیا! 🎉`;
+                tttActive = false;
+            } else if(!tttBoard.includes("")) {
+                document.getElementById("ttt-status").innerText = "مقابلہ برابر رہا!";
+                tttActive = false;
+            }
+        }
+        function resetTTT() {
+            tttBoard = ["","","","","","","","",""];
+            tttTurn = "X";
+            tttActive = true;
+            document.getElementById("ttt-status").innerText = "باری: X";
+            Array.from(document.getElementsByClassName("cell")).forEach(c => c.innerText = "");
+        }
+
+        /* Brick Breaker Logic */
+        const bbCanvas = document.getElementById("bbCanvas");
+        const bbCtx = bbCanvas.getContext("2d");
+        let bbInterval = null;
+        let bbScore = 0, bbLevel = 1;
+        let bbX = bbCanvas.width / 2, bbY = bbCanvas.height - 30;
+        let bbDx = 2, bbDy = -2, bbRadius = 7;
+        let paddleH = 10, paddleW = 70, paddleX = (bbCanvas.width - paddleW) / 2;
+        let isFire = false, powerUps = [], bricks = [];
+        let rCount = 3, cCount = 5, bWidth = 55, bHeight = 15, bPad = 8, bTop = 25, bLeft = 17;
+
+        function initBBBricks() {
+            rCount = Math.min(3 + Math.floor(bbLevel / 4), 5);
+            bricks = [];
+            for (let c = 0; c < cCount; c++) {
+                bricks[c] = [];
+                for (let r = 0; r < rCount; r++) {
+                    let hasPower = Math.random() < 0.2 ? (Math.random() < 0.5 ? 'fire' : 'shield') : null;
+                    bricks[c][r] = { x: 0, y: 0, status: 1, powerUp: hasPower };
+                }
+            }
+        }
+        function startBrickBreaker() {
+            stopBrickBreaker();
+            bbScore = 0; bbLevel = 1;
+            resetBBLevel();
+            bbInterval = setInterval(updateBB, 10);
+        }
+        function stopBrickBreaker() { clearInterval(bbInterval); }
+        function resetBBLevel() {
+            bbX = bbCanvas.width / 2; bbY = bbCanvas.height - 30;
+            let mult = 1 + (bbLevel - 1) * 0.1;
+            bbDx = 2 * mult; bbDy = -2 * mult;
+            paddleX = (bbCanvas.width - paddleW) / 2;
+            isFire = false; powerUps = [];
+            document.getElementById("bb-level").innerText = `لیول: ${bbLevel} / 20`;
+            document.getElementById("bb-score").innerText = `اسکور: ${bbScore}`;
+            initBBBricks();
+        }
+        function moveBBLeft() { if (paddleX > 0) paddleX -= 25; }
+        function moveBBRight() { if (paddleX < bbCanvas.width - paddleW) paddleX += 25; }
+        function updateBB() {
+            bbCtx.clearRect(0, 0, bbCanvas.width, bbCanvas.height);
+            for (let c = 0; c < cCount; c++) {
+                for (let r = 0; r < rCount; r++) {
+                    let b = bricks[c][r];
+                    if (b.status === 1) {
+                        let bx = c * (bWidth + bPad) + bLeft;
+                        let by = r * (bHeight + bPad) + bTop;
+                        b.x = bx; b.y = by;
+                        bbCtx.beginPath();
+                        bbCtx.rect(bx, by, bWidth, bHeight);
+                        bbCtx.fillStyle = b.powerUp ? "#00ffcc" : "#e8a598";
+                        bbCtx.fill();
+                        bbCtx.closePath();
+                    }
+                }
+            }
+            bbCtx.beginPath();
+            bbCtx.arc(bbX, bbY, bbRadius, 0, Math.PI * 2);
+            bbCtx.fillStyle = isFire ? "#ff4500" : "#f5d6ce";
+            bbCtx.fill();
+            bbCtx.closePath();
+
+            bbCtx.beginPath();
+            bbCtx.rect(paddleX, bbCanvas.height - paddleH - 8, paddleW, paddleH);
+            bbCtx.fillStyle = isFire ? "#ff4500" : "#e8a598";
+            bbCtx.fill();
+            bbCtx.closePath();
+
+            for (let i = powerUps.length - 1; i >= 0; i--) {
+                let p = powerUps[i];
+                p.y += 1.5;
+                bbCtx.beginPath();
+                bbCtx.arc(p.x, p.y, 7, 0, Math.PI * 2);
+                bbCtx.fillStyle = p.type === 'fire' ? '#ff4500' : '#00ffcc';
+                bbCtx.fill();
+                bbCtx.closePath();
+
+                if (p.y > bbCanvas.height - paddleH - 12 && p.x > paddleX && p.x < paddleX + paddleW) {
+                    if (p.type === 'fire') { isFire = true; setTimeout(() => isFire = false, 7000); }
+                    else { paddleW = 100; setTimeout(() => paddleW = 70, 7000); }
+                    powerUps.splice(i, 1);
+                } else if (p.y > bbCanvas.height) powerUps.splice(i, 1);
+            }
+
+            for (let c = 0; c < cCount; c++) {
+                for (let r = 0; r < rCount; r++) {
+                    let b = bricks[c][r];
+                    if (b.status === 1) {
+                        if (bbX > b.x && bbX < b.x + bWidth && bbY > b.y && bbY < b.y + bHeight) {
+                            if (!isFire) bbDy = -bbDy;
+                            b.status = 0;
+                            bbScore += 10;
+                            document.getElementById("bb-score").innerText = `اسکور: ${bbScore}`;
+                            if (b.powerUp) powerUps.push({ x: b.x + bWidth/2, y: b.y + bHeight, type: b.powerUp });
+
+                            if (bricks.every(col => col.every(brick => brick.status === 0))) {
+                                if (bbLevel < 20) {
+                                    bbLevel++;
+                                    alert(`مبارک ہو! لیول ${bbLevel - 1} مکمل ہو گیا۔ اب لیول ${bbLevel} ہے! 🚀`);
+                                    resetBBLevel();
+                                } else {
+                                    alert("زبردست! آپ نے تمام 20 لیول جیت لیے ہیں! 🏆");
+                                    goHub();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (bbX + bbDx > bbCanvas.width - bbRadius || bbX + bbDx < bbRadius) bbDx = -bbDx;
+            if (bbY + bbDy < bbRadius) bbDy = -bbDy;
+            else if (bbY + bbDy > bbCanvas.height - bbRadius - 8) {
+                if (bbX > paddleX && bbX < paddleX + paddleW) bbDy = -bbDy;
+                else {
+                    alert(`گیم اوور! آپ لیول ${bbLevel} پر ہار گئے۔ 😢`);
+                    goHub();
+                }
+            }
+            bbX += bbDx; bbY += bbDy;
+        }
+
+        /* Level-wise Puzzle Logic (Easy: 9, Hard: 12, Difficult: 15) */
+        const puzzleImages = [
+            "WhatsApp Image 2026-10-24 at 00.52.24.jpeg",
+            "WhatsApp Image 2026-777710-24 at 00.52.25_2.jpeg",
+            "WhatsApp Image 2026-10-24 7777at 00.52.25_2.jpeg"
+        ];
+        let currentImgIdx = 0;
+        let puzzleCols = 3;
+        let puzzleRows = 3;
+        let totalTiles = 9;
+        let emptyIdx = 8;
+        let tiles = [];
+
+        function initPuzzle() {
+            setPuzzleDifficulty('easy');
+        }
+
+        function setPuzzleDifficulty(level) {
+            if (level === 'easy') {
+                puzzleCols = 3; puzzleRows = 3; totalTiles = 9;
+            } else if (level === 'hard') {
+                puzzleCols = 4; puzzleRows = 3; totalTiles = 12;
+            } else if (level === 'difficult') {
+                puzzleCols = 5; puzzleRows = 3; totalTiles = 15;
+            }
+            emptyIdx = totalTiles - 1;
+            tiles = Array.from({length: totalTiles}, (_, i) => i);
+            document.getElementById("puzzle-status").innerText = `لیول: ${level.toUpperCase()} (${totalTiles} ٹাইলز)`;
+            shufflePuzzle();
+        }
+
+        function changePuzzleImage() {
+            currentImgIdx = (currentImgIdx + 1) % puzzleImages.length;
+            createPuzzleBoard();
+        }
+
+        function createPuzzleBoard() {
+            let board = document.getElementById("puzzle-board");
+            board.innerHTML = "";
+            board.style.gridTemplateColumns = `repeat(${puzzleCols}, 1fr)`;
+            board.style.gridTemplateRows = `repeat(${puzzleRows}, 1fr)`;
+
+            let tileWidth = 300 / puzzleCols;
+            let tileHeight = 300 / puzzleRows;
+
+            tiles.forEach((val, idx) => {
+                let t = document.createElement("div");
+                t.className = "tile";
+                t.style.width = `${tileWidth}px`;
+                t.style.height = `${tileHeight}px`;
+
+                if(val === emptyIdx) {
+                    t.classList.add("empty");
+                } else {
+                    let r = Math.floor(val / puzzleCols), c = val % puzzleCols;
+                    t.style.backgroundImage = `url('${puzzleImages[currentImgIdx]}')`;
+                    t.style.backgroundSize = `300px 300px`;
+                    t.style.backgroundPosition = `-${c * tileWidth}px -${r * tileHeight}px`;
+                }
+                t.onclick = () => movePuzzleTile(idx);
+                board.appendChild(t);
+            });
+        }
+
+        function movePuzzleTile(idx) {
+            let validMoves = [emptyIdx - 1, emptyIdx + 1, emptyIdx - puzzleCols, emptyIdx + puzzleCols];
+            if(emptyIdx % puzzleCols === 0 && idx === emptyIdx - 1) return;
+            if(emptyIdx % puzzleCols === puzzleCols - 1 && idx === emptyIdx + 1) return;
+
+            if(validMoves.includes(idx)) {
+                tiles[emptyIdx] = tiles[idx];
+                tiles[idx] = emptyIdx;
+                emptyIdx = idx;
+                createPuzzleBoard();
+                if(tiles.every((v,i) => v === i)) {
+                    document.getElementById("puzzle-status").innerText = "🎉 مبارک ہو! آپ نے پزل حل کر لیا! 💖";
+                }
+            }
+        }
+
+        function shufflePuzzle() {
+            for(let i=0; i<60; i++) {
+                let validMoves = [];
+                if(emptyIdx % puzzleCols > 0) validMoves.push(emptyIdx - 1);
+                if(emptyIdx % puzzleCols < puzzleCols - 1) validMoves.push(emptyIdx + 1);
+                if(emptyIdx >= puzzleCols) validMoves.push(emptyIdx - puzzleCols);
+                if(emptyIdx < totalTiles - puzzleCols) validMoves.push(emptyIdx + puzzleCols);
+
+                let m = validMoves[Math.floor(Math.random() * validMoves.length)];
+                tiles[emptyIdx] = tiles[m];
+                tiles[m] = emptyIdx;
+                emptyIdx = m;
+            }
+            createPuzzleBoard();
         }
     </script>
 </body>
